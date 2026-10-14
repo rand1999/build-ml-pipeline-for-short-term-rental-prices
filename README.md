@@ -696,3 +696,23 @@ unimplemented TODO branches are still incomplete even when `mlflow run .` return
 ## License
 
 [License](LICENSE.txt)
+
+
+## Submission links (required before submission)
+
+- Repository platform: GitHub
+- Repository URL: **ADD YOUR OWN PUBLIC GITHUB FORK URL**
+- Public W&B project: **ADD YOUR OWN PUBLIC nyc_airbnb W&B PROJECT URL**
+
+These placeholders must be replaced with real accessible URLs, and copied to the Udacity Submission Details field. This downloaded ZIP does **not** contain Git commit history, tagged releases, or completed cloud runs.
+
+## Running and releasing the pipeline
+
+1. Fork the starter repository, copy these completed source files into your fork, commit and push.
+2. Configure W&B authentication securely, run `mlflow run . -P steps=download`, and add `reference` alias to the latest clean dataset *after* running `mlflow run . -P steps=download,basic_cleaning`.
+3. Run `mlflow run .`, inspect experiment artifacts, vary Hydra Random Forest parameters for at least three distinct jobs, and give the best `random_forest_export` the `prod` alias.
+4. Run `mlflow run . -P steps=test_regression_model`, validate test MAE and Lineage.
+5. To demonstrate the initial version, set `etl.filter_nyc_boundaries=false`, then commit/release/tag `1.0.0`; run on `sample2.csv` and document the expected geographic-boundary failure. The initial release must genuinely predate your fix.
+6. Enable `etl.filter_nyc_boundaries=true` (current archive default), commit the fix, rerun sample2, and create/push GitHub Release/tag `1.0.1`. These releases must be created in your own repository in the proper order.
+
+**Important:** Geographic filtering is implemented and enabled in the final code. For the required version history, you must create a genuine earlier release before committing the fix; a ZIP cannot establish authentic releases retrospectively. This archive is source code, not evidence of W&B runs, aliases, or tagged releases.
