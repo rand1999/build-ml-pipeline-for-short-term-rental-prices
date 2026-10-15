@@ -716,3 +716,25 @@ These placeholders must be replaced with real accessible URLs, and copied to the
 6. Enable `etl.filter_nyc_boundaries=true` (current archive default), commit the fix, rerun sample2, and create/push GitHub Release/tag `1.0.1`. These releases must be created in your own repository in the proper order.
 
 **Important:** Geographic filtering is implemented and enabled in the final code. For the required version history, you must create a genuine earlier release before committing the fix; a ZIP cannot establish authentic releases retrospectively. This archive is source code, not evidence of W&B runs, aliases, or tagged releases.
+
+## Project links and status
+
+- GitHub: https://github.com/rand1999/build-ml-pipeline-for-short-term-rental-prices
+- Weights & Biases project: `nyc_airbnb` (public)
+
+Releases:
+
+- **1.0.0** – complete pipeline (cleaning, data checks, split, Random Forest training). Running it on
+  `sample2.csv` fails at `data_check/test_proper_boundaries`, because that batch contains listings
+  outside NYC.
+- **1.0.1** – `basic_cleaning` drops listings outside the NYC longitude/latitude box; the pipeline
+  now runs end-to-end on `sample2.csv`.
+
+`run_all.sh` reproduces every step: the pipeline on `sample1.csv`, the `reference` tag on
+`clean_sample.csv`, a hyperparameter sweep over `max_tfidf_features` and `max_features`, promotion
+of the lowest-MAE model to `prod`, the test-set evaluation, and both releases on `sample2.csv`.
+
+```bash
+mlflow run https://github.com/rand1999/build-ml-pipeline-for-short-term-rental-prices.git \
+  -v 1.0.1 -P hydra_options="etl.sample='sample2.csv'"
+```
