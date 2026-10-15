@@ -28,6 +28,11 @@ def go(args):
     df = df[idx].copy()
     logger.info("Kept %d rows with %s <= price <= %s", len(df), args.min_price, args.max_price)
 
+    # Drop listings outside the NYC boundaries (fix for release 1.0.1)
+    idx = df["longitude"].between(-74.25, -73.50) & df["latitude"].between(40.5, 41.2)
+    logger.info("Dropping %d rows outside NYC boundaries", int((~idx).sum()))
+    df = df[idx].copy()
+
     # Convert last_review to datetime
     df["last_review"] = pd.to_datetime(df["last_review"])
 
