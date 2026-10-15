@@ -59,7 +59,6 @@ def go(config: DictConfig):
                     'output_description': 'Cleaned NYC Airbnb listings',
                     'min_price': config['etl']['min_price'],
                     'max_price': config['etl']['max_price'],
-                    'filter_nyc_boundaries': str(config['etl']['filter_nyc_boundaries']).lower(),
                 },
             )
 

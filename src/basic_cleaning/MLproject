@@ -5,23 +5,23 @@ entry_points:
   main:
     parameters:
       input_artifact:
-        description: ## ADD DESCRIPTION
+        description: Raw data artifact to clean (for example sample.csv:latest)
         type: string
       output_artifact:
-        description: ## ADD DESCRIPTION
+        description: Name for the cleaned data artifact
         type: string
       output_type:
-        description: ## ADD DESCRIPTION
+        description: Type of the cleaned data artifact
         type: string
       output_description:
-        description: ## ADD DESCRIPTION
+        description: Description of the cleaned data artifact
         type: string
       min_price:
-        description: ## ADD DESCRIPTION
-        type: string
+        description: Minimum nightly price to keep (inclusive)
+        type: float
       max_price:
-        description: ## ADD DESCRIPTION
-        type: string
+        description: Maximum nightly price to keep (inclusive)
+        type: float
 
     command: >-
         python run.py --input_artifact {input_artifact} --output_artifact {output_artifact} --output_type {output_type} --output_description {output_description} --min_price {min_price} --max_price {max_price}
